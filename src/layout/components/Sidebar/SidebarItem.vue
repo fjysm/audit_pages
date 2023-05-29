@@ -30,6 +30,7 @@ import { isExternal } from '@/utils/validate'
 import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SidebarItem',
@@ -55,6 +56,11 @@ export default {
     // TODO: refactor with render function
     this.onlyOneChild = null
     return {}
+  },
+  computed: {
+    ...mapGetters([
+      'role'
+    ])
   },
   methods: {
     hasOneShowingChild(children = [], parent) {

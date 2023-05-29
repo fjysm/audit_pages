@@ -46,116 +46,193 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
+    role: 'adminuser',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'home',
+      name: 'Home',
+      component: () => import('@/views/home/index'),
+      meta: { title: '主页', icon: 'nested' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/data',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/data/overview',
+    name: 'DataServe',
+    role: 'user',
+    meta: { title: '数据服务', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'overview',
+        name: 'Overview',
+        component: () => import('@/views/data/overview/index'),
+        meta: { title: '数据总览', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'library',
+        name: 'Library',
+        component: () => import('@/views/data/LabelManage/index'),
+        meta: { title: '标签库管理', icon: 'tree' }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/classify',
     component: Layout,
+    role: 'user',
+    children: [
+      {
+        path: 'classify',
+        name: 'classify',
+        component: () => import('@/views/classify/index'),
+        meta: { title: '在线分类', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/userInfo',
+    component: Layout,
+    role: 'admin',
+    children: [
+      {
+        path: 'userInfo',
+        name: 'userInfo',
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户信息', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/checkClass',
+    component: Layout,
+    role: 'admin',
+    children: [
+      {
+        path: 'checkClass',
+        name: 'checkClass',
+        component: () => import('@/views/admin/checkClass/index'),
+        meta: { title: '分类审核', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/labelManage',
+    component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        name: 'LabelManage',
+        component: () => import('@/views/data/LabelManage/index'),
+        meta: { title: '标签管理', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/checkText',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'CheckText',
+        component: () => import('@/views/checkText/index'),
+        meta: { title: '查看文本', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/classifyDetail',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'classifyDetail',
+        component: () => import('@/views/classifyDetail/index'),
+        meta: { title: '分类', icon: 'form' }
       }
     ]
   },
 
   {
-    path: '/nested',
+    path: '/classifyResult',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
+    hidden: true,
     children: [
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        path: 'index',
+        name: 'classifyResult',
+        component: () => import('@/views/classResult/index'),
+        meta: { title: '分类结果', icon: 'form' }
       }
     ]
   },
-
   {
-    path: 'external-link',
+    path: '/classifyResultCheck',
     component: Layout,
+    hidden: true,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'index',
+        name: 'classifyResultCheck',
+        component: () => import('@/views/admin/checkClassResult/index'),
+        meta: { title: '分类结果审核', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/createDataSet',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'createDataSet',
+        component: () => import('@/views/data/createDataSet/index'),
+        meta: { title: '创建数据集', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/editPassword',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'editPassword',
+        component: () => import('@/views/editPassword/index'),
+        meta: { title: '修改密码', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/importData',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'importData',
+        component: () => import('@/views/data/importData/index'),
+        meta: { title: '数据导入', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/checkDataDetail',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'checkDataDetail',
+        component: () => import('@/views/data/dataSetDetail/index'),
+        meta: { title: '数据集详情', icon: 'form' }
       }
     ]
   },

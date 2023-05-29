@@ -28,10 +28,22 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'role'
     ]),
     routes() {
-      return this.$router.options.routes
+      const routers = []
+      this.$router.options.routes.forEach(item => {
+        if (item.role !== undefined) {
+          if (item.role.indexOf(this.role) !== -1) {
+            routers.push(item)
+          }
+        } else {
+          routers.push(item)
+        }
+      })
+      console.log(routers)
+      return routers
     },
     activeMenu() {
       const route = this.$route

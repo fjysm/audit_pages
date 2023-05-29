@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div id="app" style="background-color: #f5f7f9">
+    <keep-alive><router-view  /></keep-alive>
   </div>
 </template>
 
